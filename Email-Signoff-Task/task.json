@@ -1,0 +1,85 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+    "id": "34f431c6-e5a0-4351-8064-15aa71a006cc",
+    "name": "email-signoff-task",
+    "friendlyName": "Send Email Release Sign-off",
+    "description": "Generate and send a sign-off email for a given release containing a GIT diff.",
+    "helpMarkDown": "",
+    "category": "Utility",
+    "author": "mastloui",
+    "version": {
+        "Major": 0,
+        "Minor": 1,
+        "Patch": 0
+    },
+    "instanceNameFormat": "Send Email Sign-off",
+    "groups":[
+      {
+        "name":"EmailSettings",
+        "displayName": "Email Settings",
+        "isExpanded": true
+      },
+      {
+        "name": "EmailContent",
+        "displayName": "Email Content",
+        "isExpanded": true
+      }
+    ],
+    "inputs": [
+        {
+          "name": "Subject",
+          "type": "string",
+          "label": "Subject",
+          "defaultValue": "$(ReleaseName) Sign-off",
+          "groupName": "EmailSettings"
+          "required": true
+        },
+        {
+          "name": "To",
+          "type": "string",
+          "label": "To",
+          "defaultValue": "",
+          "groupName": "EmailSettings"
+        },
+        {
+          "name": "IncludeCommitAuthors",
+          "type": "boolean",
+          "label": "Include Commit Authors",
+          "defaultValue": true,
+          "groupName": "EmailSettings"
+        },
+        {
+          "name": "SMTPCredentials",
+          "type": "connectedService:Generic",
+          "label": "SMTP Credentials",
+          "required": true,
+          "groupName": "EmailSettings"
+        },
+        {
+          "name": "GitPathFilter",
+          "type": "string",
+          "label": "Path Filter",
+          "defaultValue": "",
+          "groupName": "EmailContent"
+        },
+        {
+          "name": "CommitAuthorWhitelist",
+          "type": "multiLine",
+          "label": "Commit Author Whitelist",
+          "defaultValue": "",
+          "groupName": "EmailContent"
+        },
+        {
+          "name": "CommitAuthorWhitelist",
+          "type": "multiLine",
+          "label": "Commit Author Blacklist",
+          "defaultValue": "",
+          "groupName": "EmailContent"
+        }
+    ],
+    "execution": {
+        "Node10": {
+            "target": "dist/index.js"
+        }
+    }
+}

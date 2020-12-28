@@ -1,0 +1,22 @@
+{
+  "name": "email-signoff-task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "bootstrap": "npm i -g tfx-cli && npm install azure-pipelines-task-lib --save  && npm install @types/node --save-dev && npm install @types/q --save-dev && npm install -g typescript",
+    "clean": "if exist dist rmdir /s /q dist && cd .. && if exist dist rmdir /s /q dist",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc && cd .. && tfx extension create --manifest-globs vss-extension.json --share-with {{YOUR_PUBLISHER_NAME}} --rev-version --output-path dist",
+    "publish": "tsc && cd .. && tfx extension publish --manifest-globs vss-extension.json --share-with {{YOUR_PUBLISHER_NAME}} --rev-version --output-path dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^12.12.22",
+    "@types/q": "^1.5.2"
+  },
+  "dependencies": {
+    "azure-pipelines-task-lib": "^2.9.3"
+  }
+}

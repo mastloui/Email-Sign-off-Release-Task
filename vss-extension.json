@@ -1,0 +1,36 @@
+{
+    "manifestVersion": 1,
+    "id": "email-signoff-task",
+    "name": "Send Email Release Sign-off",
+    "version": "0.0.29",
+    "publisher": "mastloui",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],    
+    "description": "Generate and send a sign-off email for a given release. Contains GIT diffs.",
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "icons": {
+        "default": "images/extension-icon.png"
+    },
+    "files": [
+        {
+            "path": "Email-Signoff-Task"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "custom-build-release-task",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "Email-Signoff-Task"
+            }
+        }
+    ]
+}
